@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ngôi Trường Dấu Yêu - THPT Long Thới</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(245, 180, 210, 0.8);
+  backdrop-filter: blur(6px); 
+  color: black;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #f2d4e6; 
+}
+
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      display:flex;
+      align-items:center;
+    }
+
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+
+.navbar nav ul li a {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 20px; 
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  background-color: #EC7FA9;
+  color: black;
+  transform: scale(1.1); 
+}
+
+    section {
+      padding: 80px 40px;
+      min-height: 100vh;     
+    }
+
+    .hero {
+      background-image: url('https://iwater.vn/Image/Picture/New/truong-thpt-long-thoi-nha-be.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #d81b60;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .album {
+      background-color: #fff;
+    }
+
+    .video-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    iframe {
+      width: 80%;
+      height: 400px;
+      border-radius: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 280px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .camxuc {
+      background-color: #f0f0f0;
+    }
+
+    .camxuc form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 1rem;
+      background-color: #FFB8E0;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .entry {
+      background: white;
+      margin: 20px auto;
+      padding: 15px;
+      border-left: 5px solid #1c1c1c;
+      max-width: 600px;
+    }
+
+    footer {
+      background-color: #FFB8E0;
+      color: black;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+
+    
+    .love-note {
+      background: linear-gradient(to right, #ffe6f0, #fff0f5);
+      color: #5c2a44;
+      padding: 40px;
+      max-width: 720px;
+      margin: 40px auto;
+      box-shadow: 0 8px 24px rgba(255, 105, 180, 0.1);
+      border-radius: 20px;
+      line-height: 1.7;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .love-note h1 {
+      text-align: center;
+      color: #d81b60;
+      margin-bottom: 30px;
+      animation: slideDown 1s ease-out;
+    }
+
+    .love-note .signature {
+      text-align: right;
+      margin-top: 40px;
+      font-style: italic;
+      color: #a36f8a;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .love-note .highlight {
+      color: #c2185b;
+      font-weight: bold;
+    }
+
+    .love-note p {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .love-note p:nth-of-type(1) { animation-delay: 0.5s; }
+    .love-note p:nth-of-type(2) { animation-delay: 1s; }
+    .love-note p:nth-of-type(3) { animation-delay: 1.5s; }
+    .love-note p:nth-of-type(4) { animation-delay: 2s; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .glow {
+  animation: glowPulse 2s ease-in-out infinite;
+  text-shadow: 0 0 5px #fff, 0 0 10px #ffd700, 0 0 20px #ffcc00;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 0 0 5px #fff, 0 0 10px #FFB8E0, 0 0 20px #1c1c1c;
+  }
+  50% {
+    text-shadow: 0 0 2px #fff, 0 0 6px #FFB8E0, 0 0 10px #ffd700;
+  }
+}
+   
+    .flip-card {
+      background-color: transparent;
+      width: 250px;
+      height: 330px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .flip-card-back {
+      background-color: #ffe6f0;
+      color: #5c2a44;
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-style: italic;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+ <header class="navbar">
+  <div class="logo">
+    <span style="font-size: 1.5rem; margin-right: 10px;">❤️</span>Ngôi Trường Dấu Yêu
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">Trang chủ</a></li>
+      <li><a href="#album">Album ảnh</a></li>
+      <li><a href="#camxuc">Lưu bút</a></li>
+    </ul>
+  </nav>
+</header>
+
+  
+  <section class="hero" id="home">
+    <div class="hero-content">
+     <h1 class="glow">Trường THPT Long Thới</h1>
+
+      <p>Nơi lưu giữ thanh xuân rực rỡ của chúng ta</p>
+    </div>
+  </section>
+
+  <section class="intro">
+    <h2 class="section-title">Giới Thiệu</h2>
+    <p>Trường THPT Long Thới thân thương nơi mỗi học sinh đã từng gắn bó một phần tuổi trẻ. Những tiết học sôi nổi, tiếng cười sân trường, ánh mắt thầy cô – tất cả tạo nên một thanh xuân không thể nào quên...</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 40px;">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/484315288_626739050116861_6426669147347949857_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEO0EpbuhryiQmaKE8qXWHFhJXcRh23SSSEldxGHbdJJHnglTFOjWEB4--c7rgSEIEgE4XOnzjCLs7ocAa3rn8X&_nc_ohc=jMo0Oy690yMQ7kNvwF7wrj7&_nc_oc=AdlkLr5g4L5OslNLSGqISxliufLNa8OCk_PcutQbZcfGa1dvIpP0Ya1ljiuhYpTqUJuVlV9fOfwDIRw4XEX1aDbS&_nc_zt=23&_nc_ht=scontent.fsgn8-4.fna&_nc_gid=qDw05r3ZRZfqa5by6fyNJA&oh=00_AfGBx6OY29PI1TmUDJM5TIys5a0HHb7kXKiaQcpwONWiRg&oe=6806D8DE" alt="ảnh 1">
+          </div>
+          <div class="flip-card-back">
+            Những thành tựu nổi bật của trường, nơi in dấu sự nỗ lực của giáo viên và học sinh.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/490497296_1253044886830068_6396504164460213957_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=NUt7vlHLzjoQ7kNvwHOsoqI&_nc_oc=AdnhPp4NtGvyXeIJapEfSMJY63biXC4wCESx-fTlLc9iHQhebXOsRSPcHBB5pspRyS9Bz4VUKiJtzbtTZGcdRoNc&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=A3DqXwV8XfQJnVHDmGwxsg&oh=00_AfEooh5PyGxH-Wp0v5yFmrnecBME4mYrbMXPui6zoIZ-0g&oe=6807F4E7" alt="ảnh 2">
+          </div>
+          <div class="flip-card-back">
+            Những buổi học sôi nổi, tiếng giảng dịu dàng vang vọng mãi.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/490542996_1259954586139098_6309212422619566029_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aJTW5HRMyHoQ7kNvwEYqMIa&_nc_oc=AdluEBZCWg7Pdam-NybaTwC1o5vGgcJOQIVwn2Nvc_b6Tnmf_SoaOMQmah8N-27NhDbHqXwTMmP1jS6FfAnoVzsy&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=4BX44f58x-6SCK6BkA4wiA&oh=00_AfEra9TL8HieAI6821W-0gLlM0fXde4yVkLkuAMF3hJsUQ&oe=6808042C" alt="ảnh 3">
+          </div>
+          <div class="flip-card-back">
+            Góc lớp thân quen – nơi bắt đầu của bao mơ ước tuổi học trò.
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/460207457_1074282641372961_5991200029698471201_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=-Lwp4LMCjtcQ7kNvwEw2ZbJ&_nc_oc=AdmGR0aQHgAaP42_isEmBZRYJz0HZd324Gd9h2DSP0b_OrlFfjH3sYAvgZSfTpxoihU8KoJfeaSAv7GtH2Emcz9Q&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=BUxsFMP9QPwxXwAJ_oMkGw&oh=00_AfHjsWPzyMdg1tVPFd0jgzi2UWFnANrKyDMcmoHIsRvciA&oe=6807DA30" alt="ảnh 4">
+          </div>
+          <div class="flip-card-back">
+            Những mùa phượng đỏ rực một thời, gợi nhớ bao kỷ niệm đẹp.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  
+  <section class="album" id="album">
+    <h2 class="section-title">Album Ảnh & Ký Ức</h2>
+
+  <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/JzXGL_gUmiM?si=rbKrPZpxY_aki3hk" 
+        title="Video Kỷ Niệm" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+      <p style="margin-top: 10px;">Video kỷ yếu lớp 12A1 - Một thời để nhớ</p>
+    </div>
+  <div class="gallery">
+
+    <img src="https://scontent.fsgn8-3.fna.fbcdn.net/v/t39.30808-6/482028576_620964000694366_6413814176882171672_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE9amyQruEn8W7jPXjjR8e6t-G7WMfS1JO34btYx9LUk9Paf-ZzOuZbtW199LNVkt0hPtINrIH7616pptikHr_V&_nc_ohc=ZswTOjj2LOEQ7kNvwHWkmYy&_nc_oc=AdmErojzWAHjLohe2FwK5P1pRy8ByZpHA1Sn1wGAGufIM8ynxhzMb5KluEzavKJRC3pvtF77pa_rsnQEGAMlV05Q&_nc_zt=23&_nc_ht=scontent.fsgn8-3.fna&_nc_gid=9QV5U-0J_0WC79YmI9ll8w&oh=00_AfEPzmi84HbLpF5d4GfOKI5KrkCZf6W3sUovRTpfi1PPDw&oe=6806C09D" alt="ảnh 1" />
+    <img src="
+https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/483098243_626804206777012_8045063477259109349_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHBzyODmwAqIeS-lmk_Flo2h_5IoyP2qzuH_kijI_arO7QCsJiQNrHX8JM0rzRsrxS2OjysPJ6ugSmu_Sj0NaV9&_nc_ohc=-ekhDdvFSu8Q7kNvwFpQ9g7&_nc_oc=AdlurZFIfD_HFubjMV96si_zNBPJx_3TkUF51JMGz_OIzKkmplNds9zsaC375mQ6Y0kyvXHM1_whQG7GppiVD1BC&_nc_zt=23&_nc_ht=scontent.fsgn8-4.fna&_nc_gid=xzkbAFHienfsCeP9JARIuQ&oh=00_AfFYAXmJ5Ew86w2IY5BjFcsFPwT5rBXDuMo3KAwCE7AGBg&oe=6806E94B" alt="ảnh 2" />
+
+    <img src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/484878796_626802210110545_1202463341619591752_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=86c6b0&_nc_eui2=AeGO5Zkwf1X2HosUSAu7HarydjmjEXajkid2OaMRdqOSJzdtKaiQcsmOWcA2Ug7TxGHCRs4yMiYR8pNsMy_z5bna&_nc_ohc=aqqUd74-XcEQ7kNvwHBStSU&_nc_oc=Adkbp3bwxdRtBPBfbzAVKmg0nExN33h6Xg0Bw8kNH8P5qFz_9dqF8yYd84y3XzPQWAS8iuiPN4xjMfLs0fIk0xL-&_nc_zt=23&_nc_ht=scontent.fsgn8-4.fna&_nc_gid=1sSQke2rGql3Juu8wE8s9A&oh=00_AfFS0ZO7yvRo2sFM-d88MxAte-1ZbHAq6Cj56RfgwEa3AQ&oe=6806D069" alt="ảnh 3" />
+    <img src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/483961167_624205697036863_2028691709143595261_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEtYZ73KpiFTeV8hmixpZ7S2s_al2qY1I3az9qXapjUje1A3zyIis9CBbdnT5AxbR6CLwftzNEe7etWLFIyFFdD&_nc_ohc=6h1pHo81LPoQ7kNvwGZZKok&_nc_oc=AdkdjKgadOUrsATrCBCTJkpSoy_nkkNcyHkJc0W6_CAowU6BDXGgq7gbT5-GtuLAiwmioG57pWf277QUmm65z8dd&_nc_zt=23&_nc_ht=scontent.fsgn8-4.fna&_nc_gid=0UvgK_rcUB7VoEksp6-Uig&oh=00_AfHTIRy5Lj6IeYa_uzWpL7-Wj9eyOq8VGj3kAPZgjC7Umg&oe=6806E67A" alt="ảnh 4" />
+   
+</div>
+
+
+  
+  <div style="margin-top: 30px; text-align: center; font-style: italic; color: #555;">
+    <p>“Trường học không chỉ dạy ta kiến thức, mà còn dạy ta cách sống và yêu thương.Nơi đây lưu giữ những ký ức đẹp nhất của tuổi học trò.”</p>
+  </div>
+</section>
+
+
+  
+  <section class="camxuc" id="camxuc">
+    <h2 class="section-title">Lưu Bút Gửi Nhau</h2>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" id="name" placeholder="Tên của bạn" required />
+      <textarea id="message" placeholder="Cảm nghĩ của bạn..." required></textarea>
+      <button type="submit">Gửi</button>
+    </form>
+
+    
+    <div class="love-note">
+      <h1>📖 Lưu bút tuổi học trò ✨</h1>
+
+      <p>
+        Mái trường <span class="highlight">THPT Long Thới</span> 🎓 – nơi mình đã viết nên những dòng đầu tiên của tuổi trẻ,
+        nơi mỗi buổi sáng là một bản nhạc dịu êm vang lên giữa lòng <span class="highlight">Nhà Bè, TP. Hồ Chí Minh</span> 🏡.
+      </p>
+
+      <p>
+        Giờ đây, khi sắp rời xa nơi này, lòng mình <em>bâng khuâng, lưu luyến</em> 😢.
+        Chắc sẽ không bao giờ quên được những ngày nắng cháy sân trường 🌞, tiếng trống vang đầu giờ ⏰,
+        ánh mắt bạn bè 👩‍❤️‍👨, và lời giảng dịu dàng của thầy cô 👩‍🏫👨‍🏫.
+      </p>
+
+      <p>
+        Nếu được chọn lại, mình vẫn sẽ chọn <strong>THPT Long Thới</strong> 💗 – nơi đã dạy mình không chỉ kiến thức 📚,
+        mà còn cách trưởng thành 🌱, cách yêu thương 💞, và cách trân trọng từng khoảnh khắc của tuổi học trò ⏳.
+      </p>
+
+      <p>Tạm biệt nhé, ngôi trường thân yêu… 🏫 Một đoạn code có thể chạy lại 💻, nhưng tuổi học trò – chỉ có một lần duy nhất trong đời 🌸.</p>
+
+      <div class="signature">// Mãi ghi nhớ và yêu thương! 🐻</div>
+    </div>
+
+    <div id="entries"></div>
+    <p style="text-align: center; margin-top: 30px; color: #666; font-style: italic;">
+  “Dù thời gian có trôi qua, những dòng lưu bút này sẽ luôn là nơi lưu giữ những cảm xúc trong trẻo nhất của tuổi học trò.”
+</p>
+  </section>
+ <section style="background-color: #fff;">
+    <h2 class="section-title">Thông Tin Thành Viên Nhóm</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding-bottom: 60px;">
+
+      <div class="flip-card glow">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/164967994/original/0b28fa628dee4db511facf288f97e6e3f0084cbc/draw-cute-animal-chibi-art.jpg" alt="Thành viên 1">
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <h3>Nguyễn Thị Anh Thi</h3>
+              <p>Lớp 12A1</p>
+              <p>Thiết kế - Code</p>
+              <p><em>"Luôn học hết mình và chơi hết sức!"</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card glow">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://i.redd.it/chibi-animal-practice-v0-j6xa1w5jem0d1.jpg?width=4084&format=pjpg&auto=webp&s=5a3ef9abf0fdfc72e9f2298a6d387fc1b7274727" alt="Thành viên 2">
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <h3>Trương Lê Như Quỳnh</h3>
+              <p>Lớp 12A1</p>
+              <p>Hình ảnh-Trình bày</p>
+              <p><em>"Mọi thứ đều có thể nếu bạn dám thử."</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card glow">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <img src="https://www.shutterstock.com/image-vector/cute-mouse-cheese-kawaii-character-600nw-2542834673.jpg" alt="Thành viên 3">
+          </div>
+          <div class="flip-card-back">
+            <div>
+              <h3>Ngô Ngọc Mỹ Nguyên</h3>
+              <p>Lớp 12A1</p>
+              <p>Nội dung</p>
+              <p><em>"Thanh xuân là những điều giản dị nhất."</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <footer>
+    <p>© 2025 Ngôi Trường Dấu Yêu - THPT Long Thới</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+
+      const div = document.createElement("div");
+      div.className = "entry";
+      div.innerHTML = <strong>${name}</strong><p>${message}</p>;
+      document.getElementById("entries").prepend(div);
+
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
